@@ -1,5 +1,5 @@
 const InvalidOptionException = require("../errors/InvalidOptionException");
-const UnauthorizedOptionException = require("../errors/UnknownOptionException");
+const UnknownOptionException = require("../errors/UnknownOptionException");
 const availableOptions = [
     '--help',
     '--filter',
@@ -11,7 +11,7 @@ const regexValidOption = new RegExp('^(--([^=]+))(=(.*[^=]))?$');
  * This function returns if an option is valid or not
  * @param {string} opt option to be tested
  * @throws {InvalidOptionException} if option is not well formatted
- * @throws {UnauthorizedOptionException} if option is unavailable
+ * @throws {UnknownOptionException} if option is unavailable
  * @returns {boolean} return true if option is valid
  */
 function isValidOption(opt){
@@ -20,7 +20,7 @@ function isValidOption(opt){
     }
     const [,option] = opt.match(regexValidOption);
     if (!availableOptions.includes(option)){
-        throw new UnauthorizedOptionException(`Option "${opt}" does not exist. Use --help to see options`);
+        throw new UnknownOptionException(`Option "${opt}" does not exist. Use --help to see options`);
     }
     return true;
 }
@@ -55,5 +55,7 @@ function formatOptions(opts){
 }
 
 module.exports = {
+    isValidOption,
+    formatOption,
     formatOptions
 };
