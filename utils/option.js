@@ -1,6 +1,7 @@
 const InvalidOptionException = require("../errors/InvalidOptionException");
 const UnauthorizedOptionException = require("../errors/UnknownOptionException");
 const availableOptions = [
+    '--help',
     '--filter',
     '--count'
 ];
@@ -15,11 +16,11 @@ const regexValidOption = new RegExp('^(--([^=]+))(=(.*[^=]))?$');
  */
 function isValidOption(opt){
     if (!regexValidOption.test(opt)){
-        throw new InvalidOptionException(`Option "${opt}" is invalid. Use -h to see options`);
+        throw new InvalidOptionException(`Option "${opt}" is invalid. Use --help to see options`);
     }
     const [,option] = opt.match(regexValidOption);
     if (!availableOptions.includes(option)){
-        throw new UnauthorizedOptionException(`Option "${opt}" does not exist. Use -h to see options`);
+        throw new UnauthorizedOptionException(`Option "${opt}" does not exist. Use --help to see options`);
     }
     return true;
 }
