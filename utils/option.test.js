@@ -1,6 +1,6 @@
-const InvalidOptionException = require("../../errors/InvalidOptionException");
-const {isValidOption, formatOption, formatOptions} = require("../../utils/option");
-const UnknownOptionException = require("../../errors/UnknownOptionException");
+const InvalidOptionException = require("../errors/InvalidOptionException");
+const {isValidOption, formatOption, formatOptions} = require("./option");
+const UnknownOptionException = require("../errors/UnknownOptionException");
 describe('isValidOption', () => {
     test('no well formatted option must throw InvalidOptionException', () => {
         let invalidOption;
