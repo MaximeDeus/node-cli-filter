@@ -1,1 +1,59 @@
-console.log('Hello world');
+const InvalidOptionException = require("./errors/InvalidOptionException");
+const UnauthorizedOptionException = require("./errors/UnknownOptionException");
+const options = process.argv.slice(2); // remove node.exe and app.js filepath from args
+const availableOptions = [
+    '--filter',
+    '--count'
+];
+const regexValidOption = new RegExp('^(--([^=]+))(=(.*[^=]))?$');
+
+/**
+ * This function returns if an option is valid or not
+ * @param {string} opt option to be tested
+ * @throws {InvalidOptionException} if option is not well formatted
+ * @throws {UnauthorizedOptionException} if option is unavailable
+ * @returns {boolean} return true if option is valid
+ */
+function isValidOption(opt){
+    if (!regexValidOption.test(opt)){
+        throw new InvalidOptionException(`Option "${opt}" is invalid. Use -h to see options`);
+    }
+    const [,option] = opt.match(regexValidOption);
+    if (!availableOptions.includes(option)){
+        throw new UnauthorizedOptionException(`Option "${opt}" does not exist. Use -h to see options`);
+    }
+    return true;
+}
+
+
+/**
+ * This function parse and returns a well formatted option, i.e :
+ * 1. remove '--'
+ * 2. store value linked to option if provided (ex: filter=toto)
+ * @param {string} opt option
+ * @returns {Object} well formatted option
+ */
+function formatOption(opt){
+    if (isValidOption(opt)){
+        const [optionName, optionValue] = opt.substring(2).split('=');
+        return {
+            [optionName]:optionValue || null
+        };
+    }
+
+}
+
+/**
+ * This function parses and returns a well formatted list of options, i.e :
+ * @param {string[]} opts list of options
+ * @returns {Object} Object containing all options associated to their values (which is null if not set)
+ */
+function formatOptions(opts){
+    const result = {};
+    opts.forEach(opt => Object.assign(result, formatOption(opt)));
+    return result;
+}
+
+// TODO TEST SECTION, MUST BE DELETED
+const result = formatOptions(options);
+console.log(result);
