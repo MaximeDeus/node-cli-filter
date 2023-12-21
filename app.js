@@ -3,6 +3,12 @@ const options = formatOptions(process.argv.slice(2)); // slice(2) for removing n
 const {data} = require("./data");
 const {filterByAnimals} = require("./utils/filter");
 
-const result = filterByAnimals(data,'ry')
-console.log(result);
+let result = data;
+if ('filter' in options) {
+    result = filterByAnimals(data,options.filter);
+}
+if ('count' in options) {
+    // TODO result = count(result));
+}
+console.log(JSON.stringify(result, null, 2)); // pretty printing;
 
