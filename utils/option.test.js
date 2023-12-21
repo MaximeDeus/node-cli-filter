@@ -42,4 +42,10 @@ describe('formatOptions', () => {
         const formattedOptions = formatOptions(options);
         expect(formattedOptions).toEqual({filter: "ry", count: null});
     });
+
+    test('options can only appear once and keeping the latest value', () => {
+        const options = ['--filter=a','--filter=b'];
+        const formattedOptions = formatOptions(options);
+        expect(formattedOptions).toEqual({filter: "b"});
+    });
 });
