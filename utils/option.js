@@ -16,11 +16,11 @@ const regexValidOption = new RegExp('^(--([^=]+))(=(.*[^=]))?$');
  */
 function isValidOption(opt){
     if (!regexValidOption.test(opt)){
-        throw new InvalidOptionException(`Option "${opt}" is invalid. Use --help to see options`);
+        throw new InvalidOptionException(`Option "${opt}" is invalid. Use --help to see usage`);
     }
     const [,option] = opt.match(regexValidOption);
     if (!availableOptions.includes(option)){
-        throw new UnknownOptionException(`Option "${opt}" does not exist. Use --help to see options`);
+        throw new UnknownOptionException(`Option "${opt}" does not exist. Use --help to see available options`);
     }
     return true;
 }
