@@ -1,6 +1,6 @@
 // TODO add test with count
 let mockFilter;
-jest.mock('./data', () => ({
+jest.mock('./data/sampleData', () => ({
     data: {data: 'original'},
 }));
 beforeEach(() => {
