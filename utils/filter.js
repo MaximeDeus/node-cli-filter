@@ -5,8 +5,8 @@
  * @param {Object[]} data - countries data
  * @param {string} data[].name - country's name
  * @param {Object[]} data[].people - peoples of country
- * @param {string} data[].people[].name - people's name
- * @param {Object[]} data[].people[].animals - animals of people
+ * @param {string} data[].people[].name - person's name
+ * @param {Object[]} data[].people[].animals - animals of a person
  * @param {string} data[].people[].animals[].name - animal's name
  * @param {string} expression expression to be matched
  * @returns {Object[]} country data with filter applied

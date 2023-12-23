@@ -1,14 +1,15 @@
 const {formatOptions} = require("./utils/option");
 const options = formatOptions(process.argv.slice(2)); // slice(2) for removing node.exe and app.js filepath from args
-const {data} = require("./data");
+const {data} = require("./data/sampleData");
 const {filterByAnimals} = require("./utils/filter");
+const {count} = require("./utils/count");
 
 let result = data;
 if ('filter' in options) {
     result = filterByAnimals(data,options.filter);
 }
 if ('count' in options) {
-    // TODO result = count(result));
+    result = count(result);
 }
 console.log(JSON.stringify(result, null, 2)); // pretty printing;
 
