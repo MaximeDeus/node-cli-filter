@@ -11,20 +11,20 @@
  * @param {string} expression expression to be matched
  * @returns {Object[]} country data with filter applied
  */
-function filterByAnimals(data,expression){
-    return data
-        .map(country => ({
-            ...country,
-            people: country.people
-                .map(person => ({
-                    ...person,
-                    animals: person.animals.filter(animal => animal.name.includes(expression))
-                }))
-            .filter(person => person.animals.length > 0)
+function filterByAnimals(data, expression) {
+  return data
+    .map((country) => ({
+      ...country,
+      people: country.people
+        .map((person) => ({
+          ...person,
+          animals: person.animals.filter((animal) => animal.name.includes(expression)),
         }))
-        .filter(country => country.people.length > 0);
+        .filter((person) => person.animals.length > 0),
+    }))
+    .filter((country) => country.people.length > 0);
 }
 
 module.exports = {
-    filterByAnimals
-}
+  filterByAnimals,
+};
