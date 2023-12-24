@@ -11,19 +11,19 @@
  * @param {string} data[].people[].animals[].name - animal's name
  * @returns {Object[]} country data with count applied
  */
-function count(data){
-    return data
-        .map(country => ({
-            ...country,
-            name: `${country.name} [${country.people.length}]`,
-            people: country.people
-                .map(person => ({
-                    ...person,
-                    name: `${person.name} [${person.animals.length}]`,
-                }))
-        }))
+function count(data) {
+  return data
+    .map((country) => ({
+      ...country,
+      name: `${country.name} [${country.people.length}]`,
+      people: country.people
+        .map((person) => ({
+          ...person,
+          name: `${person.name} [${person.animals.length}]`,
+        })),
+    }));
 }
 
 module.exports = {
-    count
-}
+  count,
+};
