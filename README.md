@@ -3,7 +3,7 @@ A command-line interface in Node.js to filter and count a specific list of eleme
 
 ## Getting Started
 
-For being able to use this program, [NodeJS](https://nodejs.org/fr) is required.
+For being able to use this program, [NodeJS](https://nodejs.org) is required.
 
 ## Installation
 
